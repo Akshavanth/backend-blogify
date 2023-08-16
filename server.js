@@ -1,10 +1,18 @@
 const http = require("http");
 const express = require("express");
+const usersRouter = require("./routes/users/usersRouter");
+const connectDB = require("./config/database");
+connectDB();
 
 const app = express();
 
+app.use(express.json());
+app.use("/", usersRouter);
+
 const server = http.createServer(app);
 
-const PORT = process.env.PORT || 9080;
+const PORT = process.env.PORT || 4000;
 
-server.listen(app, console.log(`server is listening on ${PORT}`));
+server.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
+});
