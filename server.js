@@ -7,7 +7,7 @@ connectDB();
 const app = express();
 
 app.use(express.json());
-app.use("/", usersRouter);
+app.use("/api/v1/users", usersRouter);
 
 const server = http.createServer(app);
 

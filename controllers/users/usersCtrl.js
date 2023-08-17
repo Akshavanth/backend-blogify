@@ -1,5 +1,6 @@
 const User = require("../../model/User/User");
 const bcrypt = require("bcryptjs");
+const generateToken = require("../../utils/generateToken");
 
 // register user
 // end point /api/v1/users/register
@@ -67,12 +68,38 @@ exports.login = async (req, res) => {
     res.status(201).json({
       status: "success",
       message: "user logged in sccessfully",
+      _id: user?._id,
+      username: user?.username,
+      role: user?.role,
+      email: user?.email,
+      token: generateToken(user),
+    });
+  } catch (error) {
+    res.json({
+      status: "failed",
+      message: error?.message,
+    });
+  }
+};
+
+//get profile
+// endpoint /api/v1/users/profile/:id
+
+exports.getProfile = async (req, res) => {
+  const id = req.userAuth._id;
+
+  const user = await User.findById(id);
+  try {
+    res.json({
+      status: "success",
+      message: "profile fetched",
       user,
     });
   } catch (error) {
     res.json({
       status: "failed",
       message: error?.message,
+      data: "user data",
     });
   }
 };
