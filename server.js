@@ -6,12 +6,15 @@ const {
   notFound,
   globalErrHandler,
 } = require("./middlewares/globalErrorHandler");
+const categoryRouter = require("./routes/category/categoryRouter");
 connectDB();
 
 const app = express();
 
 app.use(express.json());
+
 app.use("/api/v1/users", usersRouter);
+app.use("/api/v1/categories", categoryRouter);
 
 const server = http.createServer(app);
 

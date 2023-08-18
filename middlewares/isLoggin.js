@@ -14,7 +14,8 @@ const isLoggin = (req, res, next) => {
     req.userAuth = user;
 
     if (err) {
-      return "Invalid token";
+      const err = new Error("Toke expired/Invalid");
+      next(err);
     } else {
       //! save the user
       //* send the user
