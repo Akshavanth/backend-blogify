@@ -2,12 +2,10 @@ const mongoose = require("mongoose");
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(
-      "mongodb+srv://akshavanth:9CfgebszghVHM8FI@mern-blog-v1.pjcghf8.mongodb.net/mern-blog?retryWrites=true&w=majority"
-    );
+    await mongoose.connect(process.env.MONGO_URL);
     console.log("db has been connected");
   } catch (error) {
-    console.log("error on connecting", error.message);
+    console.log("error on connecting DB", error.message);
   }
 };
 
