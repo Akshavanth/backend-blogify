@@ -18,7 +18,7 @@ app.use(express.json());
 
 app.use("/api/v1/users", usersRouter);
 app.use("/api/v1/categories", categoryRouter);
-app.use("/api/v1/posts", postRouter);
+app.use("/api/v1/post", postRouter);
 
 const server = http.createServer(app);
 
