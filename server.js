@@ -10,6 +10,7 @@ const {
 } = require("./middlewares/globalErrorHandler");
 const categoryRouter = require("./routes/category/categoryRouter");
 const postRouter = require("./routes/post/postRouter");
+const commentRouter = require("./routes/comment/commentRouter");
 connectDB();
 
 const app = express();
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use("/api/v1/users", usersRouter);
 app.use("/api/v1/categories", categoryRouter);
 app.use("/api/v1/post", postRouter);
+app.use("/api/v1/comments", commentRouter);
 
 const server = http.createServer(app);
 
